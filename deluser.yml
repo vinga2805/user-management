@@ -1,0 +1,10 @@
+---
+- hosts: all
+  become: True
+  vars_prompt:
+    - name: uname
+      private: no
+      prompt: "Enter the username which you want to delete"
+  tasks:
+    - name: Delete the existing user "{{uname}}"
+      user: name="{{uname}}" state=absent remove=yes shell=/bin/bash

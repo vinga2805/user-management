@@ -1,0 +1,19 @@
+---
+- hosts: all
+  become: True
+  vars_prompt:
+   - name: uname
+     private: no
+     prompt: "Enter the username which you want to ADD"
+  tasks:
+   - name: Renaming ssh-key pair specific to user
+     local_action: command ssh-keygen -t rsa -N "" -f {{ uname }}
+     run_once: true 
+   - name: Add the user "{{uname}}"
+     user: name="{{uname}}" shell=/bin/bash
+   - name: ansible create directory for ssh keys
+     file: path=/home/{{ uname }}/.ssh state=directory
+   - name: making the chown permission
+     command: chown -R {{ uname }}:{{ uname }} /home/{{ uname }}
+   - name: File transfering..in Authorized_key
+     copy: src={{ uname }}.pub dest="/home/{{ uname }}/.ssh/authorized_keys"

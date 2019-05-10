@@ -1,0 +1,8 @@
+---
+- hosts: all
+  become: True
+  tasks:
+   - name: Listing users
+     shell: cat /etc/passwd | cut -d ":" -f1
+     register: result
+   - debug: var=result.stdout_lines

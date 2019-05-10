@@ -9,7 +9,7 @@
 - Anisble is insstalled in Ubuntu server.(Ubuntu 16.04)
 - Creating ssh-key pair in the local directory, later on private key can be emailed to user.
 ## Installation steps
-- git clone https://github.com/ruchi183/user-management.git
+- git clone https://github.com/vinga2805/user-management.git
 - edit hosts file to add server entries like below.
 - X.X.X.X ansible_user=xyz ansible_ssh_private_key_file=abc.pem--->(tested on aws)
 - chmod 775 user-manage.sh
